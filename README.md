@@ -1,9 +1,9 @@
 # aws-cdk-find-space
 
 ## CDK command
-Initialize
+  Initialize
 ```ckd init app --language typescript```
-Synth with cloudformation
+  Synth with cloudformation
 ```cdk synth```
-Initial cloud bootstrap
+  Initial cloud bootstrap
 ```cdk bootstrap```
