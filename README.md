@@ -8,7 +8,10 @@
 ###  Initial cloud bootstrap
 ```cdk bootstrap```
 ### deploy
-```cdk deploy```
+```
+cdk deploy
+cdk deploy --parameters duration=12
+```
 
 ### Delete stack
 ``` cdk destroy```
@@ -25,4 +28,9 @@
 ### check health
 ```cdk doctor```
 
+
+## Reference
+https://docs.aws.amazon.com/cdk/api/v1/docs/aws-s3-readme.html
+
+https://github.com/aws/aws-cdk
 
