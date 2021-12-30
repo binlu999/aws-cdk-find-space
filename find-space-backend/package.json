@@ -1,0 +1,19 @@
+{
+  "name": "find-space-backend",
+  "version": "1.0.0",
+  "description": "```\r npm init -y\r ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-cdk": "^2.3.0",
+    "aws-cdk-lib": "^2.3.0",
+    "constructs": "^10.0.19",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
