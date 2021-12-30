@@ -17,7 +17,7 @@ cdk deploy --parameters duration=12
 ``` cdk destroy```
 
 ### deploy all stacks
-``` cdk deploy --all``
+``` cdk deploy --all ```
 
 ### list all stacks
 ``` cdk list```
