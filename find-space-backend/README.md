@@ -8,3 +8,25 @@ npm init -y
 ```
 npm i -D aws-cdk aws-cdk-lib constructs ts-node typescript
 ```
+## Initiate typescript
+```
+tsc --init
+```
+
+## bootstrap with cloud
+```
+cdk bootstrap
+```
+
+
+## Reference
+https://github.com/barosanuemailtest/space-finder-backend
+https://github.com/barosanuemailtest/space-finder-frontend
+
+
+### aws-lambda-nodejs
+https://docs.aws.amazon.com/cdk/api/v1/docs/aws-lambda-nodejs-readme.html
+
+```
+$ npm install --save-dev esbuild@0
+```
