@@ -30,3 +30,9 @@ https://docs.aws.amazon.com/cdk/api/v1/docs/aws-lambda-nodejs-readme.html
 ```
 $ npm install --save-dev esbuild@0
 ```
+
+
+# Webpack 
+```
+npm i -D webpack webpack-cli ts-loader @types/webpack
+```
