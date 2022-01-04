@@ -13,7 +13,9 @@
                 "${relativeFile}"
             ],
             "env":{
-                "AWS_REGION":"us-east-1"
+                "AWS_REGION":"us-east-1",
+                "TABLE_NAME":"space-table",
+                "PRIMARY_KEY":"spaceId"
             }
         }
     ]

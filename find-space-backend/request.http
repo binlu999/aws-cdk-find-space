@@ -4,5 +4,24 @@
 GET {{endpoint}}/hello/
 ###
 
-GET https://z9ym4hobkb.execute-api.us-east-1.amazonaws.com/prod/hello
+GET {{endpoint}}/spaces
 ###
+
+GET {{endpoint}}/spaces?spaceId=55b6ef4a-e058-4355-a073-2f08284c36831
+###
+
+GET {{endpoint}}/spaces?location1=London
+###
+
+POST {{endpoint}}/spaces/
+Content-Type: application/json
+
+{
+    "location":"London",
+    "name":"Best two"
+}
+###
+
+
+
+
