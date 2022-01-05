@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c238db4debb0cd35e3a29173a55aee52e362b6c7bf922bc0ae69f6565e34d555.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/eef23c97ecaf13d90094c0f2b77f593d9be1074e91b913053fb13b565b706977.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -56,7 +56,7 @@
         "/Space-finder/SapceAPI/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "SapceAPIDeployment8877C7BE8319f2a01e5d62851d348cc5992dd769"
+            "data": "SapceAPIDeployment8877C7BE232cd4de76c1ab6cf6992d93c73ab809"
           }
         ],
         "/Space-finder/SapceAPI/DeploymentStage.prod/Resource": [
@@ -259,6 +259,42 @@
             "data": "spacetabledelete66E34955"
           }
         ],
+        "/Space-finder/findSpaceUserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findSpaceUserPoolA6D7F72F"
+          }
+        ],
+        "/Space-finder/findSpaceUserPool/SpaceUserPool-Client/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findSpaceUserPoolSpaceUserPoolClient4691CDAB"
+          }
+        ],
+        "/Space-finder/FindSpaceUserPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FindSpaceUserPoolId"
+          }
+        ],
+        "/Space-finder/SpaceUserPoolClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpaceUserPoolClientId"
+          }
+        ],
+        "/Space-finder/SpaceUserAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpaceUserAuthorizer401AE1AA"
+          }
+        ],
+        "/Space-finder/Admins": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Admins"
+          }
+        ],
         "/Space-finder/helloLambdaFun/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -275,6 +311,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "helloLambdaNodejsServiceRole1F883DBC"
+          }
+        ],
+        "/Space-finder/helloLambdaNodejs/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "helloLambdaNodejsServiceRoleDefaultPolicyF683C80C"
           }
         ],
         "/Space-finder/helloLambdaNodejs/Resource": [
