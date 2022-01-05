@@ -2,11 +2,11 @@ import { handler } from '../../services/space-table/update';
 
 const event ={
     queryStringParameters: {
-        spaceId: '55b6ef4a-e058-4355-a073-2f08284c3683'
+        spaceId: 'odysm57te7a'
     },
     body:{
-        'class':'AA',
-        'name':'the best 12',
+        'class':'AAB',
+        'name':'the best 999',
         location:'Paris southeast',
     }
 }
