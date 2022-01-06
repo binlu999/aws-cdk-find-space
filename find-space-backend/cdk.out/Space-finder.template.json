@@ -1407,16 +1407,206 @@
         "aws:cdk:path": "Space-finder/SpaceUserAuthorizer/Resource"
       }
     },
-    "Admins": {
+    "findspaceidentitypool": {
+      "Type": "AWS::Cognito::IdentityPool",
+      "Properties": {
+        "AllowUnauthenticatedIdentities": true,
+        "CognitoIdentityProviders": [
+          {
+            "ClientId": {
+              "Ref": "findSpaceUserPoolSpaceUserPoolClient4691CDAB"
+            },
+            "ProviderName": {
+              "Fn::GetAtt": [
+                "findSpaceUserPoolA6D7F72F",
+                "ProviderName"
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-identity-pool"
+      }
+    },
+    "findspaceauthencatedroleA3239295": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "findspaceidentitypool"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "authenticated"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-authencated-role/Resource"
+      }
+    },
+    "findspaceunauthencatedrole1B733155": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "findspaceidentitypool"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "unauthenticated"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-unauthencated-role/Resource"
+      }
+    },
+    "findspaceadminrole65A2B77A": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "findspaceidentitypool"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "authenticated"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-admin-role/Resource"
+      }
+    },
+    "findspaceadminroleDefaultPolicy180A2764": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:ListAllMyBuckets",
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "findspaceadminroleDefaultPolicy180A2764",
+        "Roles": [
+          {
+            "Ref": "findspaceadminrole65A2B77A"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-admin-role/DefaultPolicy/Resource"
+      }
+    },
+    "findspaceroleattachment": {
+      "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
+      "Properties": {
+        "IdentityPoolId": {
+          "Ref": "findspaceidentitypool"
+        },
+        "RoleMappings": {
+          "adminsMapping": {
+            "AmbiguousRoleResolution": "AuthenticatedRole",
+            "IdentityProvider": {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::GetAtt": [
+                      "findSpaceUserPoolA6D7F72F",
+                      "ProviderName"
+                    ]
+                  },
+                  ":",
+                  {
+                    "Ref": "findSpaceUserPoolSpaceUserPoolClient4691CDAB"
+                  }
+                ]
+              ]
+            },
+            "Type": "Token"
+          }
+        },
+        "Roles": {
+          "authenticated": {
+            "Fn::GetAtt": [
+              "findspaceauthencatedroleA3239295",
+              "Arn"
+            ]
+          },
+          "unauthenticated": {
+            "Fn::GetAtt": [
+              "findspaceunauthencatedrole1B733155",
+              "Arn"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/find-space-role-attachment"
+      }
+    },
+    "admins": {
       "Type": "AWS::Cognito::UserPoolGroup",
       "Properties": {
         "UserPoolId": {
           "Ref": "findSpaceUserPoolA6D7F72F"
         },
-        "GroupName": "Admins"
+        "GroupName": "admins",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "findspaceadminrole65A2B77A",
+            "Arn"
+          ]
+        }
       },
       "Metadata": {
-        "aws:cdk:path": "Space-finder/Admins"
+        "aws:cdk:path": "Space-finder/admins"
       }
     },
     "helloLambdaFunServiceRole308B4650": {
@@ -1576,7 +1766,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3WRQVPCMBCFfwv3EkX8AwVHTyqDemZCstYtabaTTWRqp//dpKGAB0/7vTft6+7rnViK25k88lzpw9zgXvRvXqpDEa1dL1uspIej7ES/BfZli8X6015hqRQF64sHaA11DUSM7pWKaRUkL0N8lYJTsJJ8EafMzM/gv0gnayKqLHr6YHAbIsNliLbDH3DjAmc1FCibuCeZHJjmhgyqLslMQ2Fks9dS9MkC1yAzkk0PPAarfOIJhkJ3VjakYyfvcp9TR5hSdpY01CxexnEO4OVOMoNnUaYRtVgFdQA/Hq3yOaKfDkqxZ55gbfDU5f/Ok6PQDkOyXoNvg78UOn44NY62+tNu5DVZjfnAtL+o+eZ7cS8WS7GY1Yw4d/GHYgNim+cvDOH4hSMCAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/2WR3VLCMBCFn4X7EkV8gYKj44XKoF4zIVnLQpPtZBOZ2um7mzQUUa/2O2eSM/tzI+bieiKPPFX6MK1xK7pXL9WhiNamkw1W0sNRtqJbA/uywWL5YS+wVIqC9cUdNDW1BiJG90LFtAqSlyF+peAULCT/iFNm5ifwO9LJGokqi57eGdyKqOYyRNvhF7ihgbPqC5Qm9kl1Dkx1RTWqNslMfVFLs9VSdMkCZ5AZyaYH98Eqn3iEvtCtlYZ03Mmb3ObUAcaUjSUNexbPQzkH8HwjmcGzKFOJWiyCOoAfhlZ5HNGNA6XYM4+wrPG0y//Oo46Avh0/X+o0denjBXfmz/8HR6Hp+2S9BN8E/7P+oc10H7TVr1tEXpLVmNeRphV7vvqc3YrZXMwme0acunh+NCDWuX4DTYE+HVECAAA="
       },
       "Metadata": {
         "aws:cdk:path": "Space-finder/CDKMetadata/Default"
@@ -1619,6 +1809,11 @@
     "SpaceUserPoolClientId": {
       "Value": {
         "Ref": "findSpaceUserPoolSpaceUserPoolClient4691CDAB"
+      }
+    },
+    "spacefindidentitypoolId": {
+      "Value": {
+        "Ref": "findspaceidentitypool"
       }
     }
   },

@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/eef23c97ecaf13d90094c0f2b77f593d9be1074e91b913053fb13b565b706977.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/df0802bf1d8e8bfd5dc0396245e2bc3f18e63efbf96f16bceac71b87c5734ff7.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -289,10 +289,52 @@
             "data": "SpaceUserAuthorizer401AE1AA"
           }
         ],
-        "/Space-finder/Admins": [
+        "/Space-finder/find-space-identity-pool": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "Admins"
+            "data": "findspaceidentitypool"
+          }
+        ],
+        "/Space-finder/space-find-identity-pool-Id": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "spacefindidentitypoolId"
+          }
+        ],
+        "/Space-finder/find-space-authencated-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceauthencatedroleA3239295"
+          }
+        ],
+        "/Space-finder/find-space-unauthencated-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceunauthencatedrole1B733155"
+          }
+        ],
+        "/Space-finder/find-space-admin-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceadminrole65A2B77A"
+          }
+        ],
+        "/Space-finder/find-space-admin-role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceadminroleDefaultPolicy180A2764"
+          }
+        ],
+        "/Space-finder/find-space-role-attachment": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceroleattachment"
+          }
+        ],
+        "/Space-finder/admins": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "admins"
           }
         ],
         "/Space-finder/helloLambdaFun/ServiceRole/Resource": [

@@ -36,3 +36,11 @@ $ npm install --save-dev esbuild@0
 aws cognito-idp admin-set-user-password --user-pool-id us-east-1_YjuZDrBGZ --username findspaceuser --password "zaq1@WSX" --permanent
 ```
 jwt.io
+
+### Cognito references
+Fine-grained Access Control with Amazon Cognito Identity Pools
+https://www.youtube.com/watch?v=tAUmz94O2Qo
+Serverless Authentication and Authorization
+https://www.youtube.com/watch?v=VZqG7HjT2AQ
+Building Multi-Tenant Solutions on AWS
+https://www.youtube.com/watch?v=mwQ5lipGTBI
