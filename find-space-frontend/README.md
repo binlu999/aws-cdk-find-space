@@ -50,4 +50,14 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 npx create-react-app find-space-frontend --template typescript
 ```
 
+### clean npm cache
+```
+npm clean --force
+```
+
+### check lib version
+```
+npm info react-router-dom version
+```
+
 
