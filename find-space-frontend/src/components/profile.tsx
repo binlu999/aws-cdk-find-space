@@ -29,14 +29,13 @@ export class Profile extends React.Component<ProfileProps,ProfileState>{
         const rows=[];
         for(const userAttribute of this.state.userAttributes){
             rows.push(
-                <tr key={userAttribute.name}>
-                    <td>{userAttribute.name}</td>
-                    <td>{userAttribute.value}</td>
+                <tr key={userAttribute.Name}>
+                    <td>{userAttribute.Name}</td>
+                    <td>{userAttribute.Value}</td>
                 </tr>
             );
         };
         return <table>
-            <th><td>Attribute Name</td><td>Attribute Value</td></th>
             <tbody>
                 {rows}
             </tbody>

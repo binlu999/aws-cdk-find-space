@@ -1,4 +1,4 @@
-import {Stack, StackProps} from 'aws-cdk-lib';
+import {Fn, Stack, StackProps} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Code, Function as LambdaFunction, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
@@ -12,6 +12,7 @@ export class SpaceStack extends Stack {
 
     private api =new RestApi(this,'SapceAPI');
     private authorizer:AuthorizerWrapper;
+    private suffix :string;
 
     private spaceTableProps : TableProps={
         tableName:'space-table',
@@ -69,5 +70,10 @@ export class SpaceStack extends Stack {
         spaceResource.addMethod('PUT',this.spaceTable.updateLambdaIngegration);
         spaceResource.addMethod('DELETE',this.spaceTable.deleteLambdaIngegration);
 
+    }
+
+    private initializeSuffix(){
+        const shortStackId = Fn.select(2,Fn.split('/',this.stackId));
+        const suffix = Fn.select(4,Fn.split('-',shortStackId));
     }
 }

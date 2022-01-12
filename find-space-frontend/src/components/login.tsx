@@ -40,21 +40,21 @@ export class Login extends React.Component <LoginProps, LoginState>{
 
     private async handleSubmit(event:SyntheticEvent){
         event.preventDefault();
-        this.setState({
-            loginAttempted:true
-        });
+
         const result=await this.props.authService.login(
             this.state.userName,
             this.state.password
             );
         if(result){
             this.setState({
+                loginAttempted:true,
                 loginSuccessful:true
             });
             this.props.setUser(result);
             history.push('/profile')
         }else{
             this.setState({
+                loginAttempted:true,
                 loginSuccessful:false
             });
         }

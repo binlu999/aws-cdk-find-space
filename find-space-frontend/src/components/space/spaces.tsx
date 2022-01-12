@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react"
-import {Space, User} from '../../models/model';
+import {Space} from '../../models/model';
 import { DataService } from "../../services/dataService";
 import { SpaceComponent } from "./spaceComponent";
 import { ConfirmModalComponent } from './confirmModalComponent'
