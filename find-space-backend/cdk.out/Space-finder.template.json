@@ -1306,6 +1306,64 @@
         "aws:asset:property": "Code"
       }
     },
+    "spacephotobucket72CD1D20": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Join": [
+            "",
+            [
+              "space-photos-",
+              {
+                "Fn::Select": [
+                  4,
+                  {
+                    "Fn::Split": [
+                      "-",
+                      {
+                        "Fn::Select": [
+                          2,
+                          {
+                            "Fn::Split": [
+                              "/",
+                              {
+                                "Ref": "AWS::StackId"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        "CorsConfiguration": {
+          "CorsRules": [
+            {
+              "AllowedHeaders": [
+                "*"
+              ],
+              "AllowedMethods": [
+                "HEAD",
+                "GET",
+                "PUT"
+              ],
+              "AllowedOrigins": [
+                "*"
+              ]
+            }
+          ]
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "Space-finder/space-photo-bucket/Resource"
+      }
+    },
     "findSpaceUserPoolA6D7F72F": {
       "Type": "AWS::Cognito::UserPool",
       "Properties": {
@@ -1525,9 +1583,25 @@
         "PolicyDocument": {
           "Statement": [
             {
-              "Action": "s3:ListAllMyBuckets",
+              "Action": [
+                "s3:PutObject",
+                "S3:PutObjectAcl"
+              ],
               "Effect": "Allow",
-              "Resource": "*"
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "spacephotobucket72CD1D20",
+                        "Arn"
+                      ]
+                    },
+                    "/*"
+                  ]
+                ]
+              }
             }
           ],
           "Version": "2012-10-17"
@@ -1766,7 +1840,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/2WR3VLCMBCFn4X7EkV8gYKj44XKoF4zIVnLQpPtZBOZ2um7mzQUUa/2O2eSM/tzI+bieiKPPFX6MK1xK7pXL9WhiNamkw1W0sNRtqJbA/uywWL5YS+wVIqC9cUdNDW1BiJG90LFtAqSlyF+peAULCT/iFNm5ifwO9LJGokqi57eGdyKqOYyRNvhF7ihgbPqC5Qm9kl1Dkx1RTWqNslMfVFLs9VSdMkCZ5AZyaYH98Eqn3iEvtCtlYZ03Mmb3ObUAcaUjSUNexbPQzkH8HwjmcGzKFOJWiyCOoAfhlZ5HNGNA6XYM4+wrPG0y//Oo46Avh0/X+o0denjBXfmz/8HR6Hp+2S9BN8E/7P+oc10H7TVr1tEXpLVmNeRphV7vvqc3YrZXMwme0acunh+NCDWuX4DTYE+HVECAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/2WS3VLCMBCFn4X7EEV8gYKj44XKoF4zIYllIcl2solM7fTdTRqKqFf77Un3zP70hs/59UQcaSrVYWpgy7vXIOSBJWnTiQZqEfRRtLxbawpVA2z54S6wkhKjC+xONwZbqxMm9SJLbrXOWoFUitFLvRD0k5w8Cz/psEOVpZGwdhDwnbRfIRqqYpI9fGk/NHDOegbCpj7RFMMcV2hAtjkt1DMj7FYJ3mVJewtEgC5/cB+dDJlH6JlqnbCo0k7exLa4DjC6bBwqvSf+PISzAc03gkgH4lUOKefdIsqDDsPUBbNZoZ7JMiHvxhnz45lHWBo4rfe/8qgSQGjH4ss8L6IK6ag7+6f+wWNs+j5LLzE0MfxcZOg8nwxc/es8iZfoFJQN5QXwPV19zm75bM5nkz0BTH36I8Bqvi7xG9Cn9xFkAgAA"
       },
       "Metadata": {
         "aws:cdk:path": "Space-finder/CDKMetadata/Default"
@@ -1799,6 +1873,11 @@
             "/"
           ]
         ]
+      }
+    },
+    "findspacephotobucketname": {
+      "Value": {
+        "Ref": "spacephotobucket72CD1D20"
       }
     },
     "FindSpaceUserPoolId": {

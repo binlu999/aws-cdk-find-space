@@ -11,12 +11,14 @@ export class AuthorizerWrapper{
     private identityPoolWrapper: IdentityPoolWrapper;
     private userPool:UserPool;
     private userPoolClient:UserPoolClient;
+    private photoBucketArn:string;
 
     public authorizer:CognitoUserPoolsAuthorizer;
 
-    constructor(scope:Construct,api:RestApi){
+    constructor(scope:Construct,api:RestApi,photoBucketArn:string){
         this.scope=scope;
         this.api=api;
+        this.photoBucketArn=photoBucketArn;
         
         this.initialize();
     }
@@ -77,7 +79,9 @@ export class AuthorizerWrapper{
         this.identityPoolWrapper=new IdentityPoolWrapper(
             this.scope,
             this.userPool,
-            this.userPoolClient);
+            this.userPoolClient,
+            this.photoBucketArn
+            );
     }
     private createUserGroup(name:string){
         new CfnUserPoolGroup(this.scope,name,{

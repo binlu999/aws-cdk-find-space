@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/df0802bf1d8e8bfd5dc0396245e2bc3f18e63efbf96f16bceac71b87c5734ff7.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6385e43c08e9396d79c9ad29f3203898112f767ddb561eeaba1a89db60644863.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -257,6 +257,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "spacetabledelete66E34955"
+          }
+        ],
+        "/Space-finder/space-photo-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "spacephotobucket72CD1D20"
+          }
+        ],
+        "/Space-finder/find-space-photo-bucket-name": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspacephotobucketname"
           }
         ],
         "/Space-finder/findSpaceUserPool/Resource": [

@@ -1,4 +1,4 @@
-import {Fn, Stack, StackProps} from 'aws-cdk-lib';
+import { Fn, Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Code, Function as LambdaFunction, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
@@ -7,12 +7,14 @@ import { GenericTable,TableProps } from './genericTable';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import {AuthorizerWrapper} from './auth/authorizerWrapper';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
+import { Bucket, HttpMethods } from 'aws-cdk-lib/aws-s3';
 
 export class SpaceStack extends Stack {
 
     private api =new RestApi(this,'SapceAPI');
     private authorizer:AuthorizerWrapper;
-    private suffix :string;
+    private bucketSuffix :string;
+    private spacePhotoBucket:Bucket;
 
     private spaceTableProps : TableProps={
         tableName:'space-table',
@@ -30,7 +32,10 @@ export class SpaceStack extends Stack {
     constructor(scope:Construct,id:string,props:StackProps){
         super(scope,id,props);
 
-        this.authorizer=new AuthorizerWrapper(this,this.api);
+        this.initializeSuffix();
+        this.initializePhotoBucket();
+
+        this.authorizer=new AuthorizerWrapper(this,this.api,this.spacePhotoBucket.bucketArn);
 
         const optionWithAuthorizer:MethodOptions={
             authorizationType:AuthorizationType.COGNITO,
@@ -75,5 +80,25 @@ export class SpaceStack extends Stack {
     private initializeSuffix(){
         const shortStackId = Fn.select(2,Fn.split('/',this.stackId));
         const suffix = Fn.select(4,Fn.split('-',shortStackId));
+        this.bucketSuffix = suffix;
+    }
+
+    private initializePhotoBucket(){
+        this.spacePhotoBucket = new Bucket(this, 'space-photo-bucket',{
+            bucketName:'space-photos-'+this.bucketSuffix,
+            cors:[{
+                allowedMethods:[
+                    HttpMethods.HEAD,
+                    HttpMethods.GET,
+                    HttpMethods.PUT
+                ],
+                allowedOrigins:['*'],
+                allowedHeaders:['*']
+
+            }]
+        });
+        new CfnOutput(this,'find-space-photo-bucket-name',{
+            value:this.spacePhotoBucket.bucketName
+        })
     }
 }
