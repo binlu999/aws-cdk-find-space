@@ -1,6 +1,6 @@
 import { DynamoDB } from 'aws-sdk';
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
-import { getEventBody } from '../shared/utils';
+import { addCorsHeader, getEventBody } from '../shared/utils';
 
 const dbClient = new DynamoDB.DocumentClient();
 
@@ -12,7 +12,7 @@ async function handler(event: APIGatewayProxyEvent, context: Context): Promise<A
         statusCode: 200,
         body: 'No operation performend'
     }
-
+    addCorsHeader(result);
     try {
         const requestBody = getEventBody(event);
         const spaceId = event.queryStringParameters?.[PRIMARY_KEY];

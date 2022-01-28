@@ -8,7 +8,7 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import {AuthorizerWrapper} from './auth/authorizerWrapper';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { Bucket, HttpMethods } from 'aws-cdk-lib/aws-s3';
-
+import {FindSpaceWeb} from './findSpaceWeb';
 export class SpaceStack extends Stack {
 
     private api =new RestApi(this,'SapceAPI');
@@ -75,6 +75,8 @@ export class SpaceStack extends Stack {
         spaceResource.addMethod('PUT',this.spaceTable.updateLambdaIngegration);
         spaceResource.addMethod('DELETE',this.spaceTable.deleteLambdaIngegration);
 
+        new FindSpaceWeb(this,this.bucketSuffix);
+
     }
 
     private initializeSuffix(){
@@ -99,6 +101,8 @@ export class SpaceStack extends Stack {
         });
         new CfnOutput(this,'find-space-photo-bucket-name',{
             value:this.spacePhotoBucket.bucketName
-        })
+        });
+
+        
     }
 }

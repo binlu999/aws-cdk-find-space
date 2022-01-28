@@ -10,7 +10,7 @@ Authorization: {{token}}
 GET {{endpoint}}/spaces
 ###
 
-GET {{endpoint}}/spaces?spaceId=55b6ef4a-e058-4355-a073-2f08284c36831
+GET {{endpoint}}/spaces?spaceId=f145b1e8-1ae3-47b0-9dd3-786357f21eb7
 ###
 
 GET {{endpoint}}/spaces?location1=London
@@ -20,10 +20,19 @@ POST {{endpoint}}/spaces/
 Content-Type: application/json
 
 {
-    "location":"London",
-    "name":"Best two"
+    "location":"Houstin",
+    "name":"Best two in Houston"
 }
 ###
+
+PUT {{endpoint}}/spaces?spaceId=jvjw2sxkt6g
+Content-Type: :application/json
+
+{
+    "location": "Houston",
+    "name": "the best 210"
+ }
+ ###
 
 
 

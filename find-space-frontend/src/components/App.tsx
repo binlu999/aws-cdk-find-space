@@ -6,6 +6,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import { NavBar } from "./navbar";
 import { Home } from "./home";
 import { Profile } from "./profile";
+import {CreateSpace} from './space/createSpace';
 import history from "../utils/history";
 import { DataService } from "../services/dataService";
 import Spaces from "./space/spaces";
@@ -24,11 +25,11 @@ export class App extends React.Component<{}, AppState> {
     };
     this.setUser = this.setUser.bind(this);
   }
-  private setUser(user: User) {
+  private async setUser(user: User) {
     this.setState({
       user: user,
     });
-    console.log("Set user " + JSON.stringify(user));
+    await this.authService.getAWSTemporyCreds(user.cognitoUser);
   }
 
   render(): React.ReactNode {
@@ -47,6 +48,9 @@ export class App extends React.Component<{}, AppState> {
               </Route>
               <Route exact path="/spaces">
                 <Spaces dataService={this.dataService} />
+              </Route>
+              <Route exact path="/createSpace">
+                <CreateSpace dataService={this.dataService} />
               </Route>
             </Switch>
           </div>

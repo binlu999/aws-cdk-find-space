@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6385e43c08e9396d79c9ad29f3203898112f767ddb561eeaba1a89db60644863.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/dd45e75cd66c8896b59a4050fe1c438414cc873c1f3a752faf1215c04a4002b1.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -377,6 +377,60 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "helloLambdaNodejsDC6A45FA"
+          }
+        ],
+        "/Space-finder/find-space-app-web-content/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceappwebcontent82191DE7"
+          }
+        ],
+        "/Space-finder/find-space-web-content-bucket-deployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspacewebcontentbucketdeploymentAwsCliLayer8411FABB"
+          }
+        ],
+        "/Space-finder/find-space-web-content-bucket-deployment/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspacewebcontentbucketdeploymentCustomResource7F78A1D2"
+          }
+        ],
+        "/Space-finder/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/Space-finder/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/Space-finder/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/Space-finder/spaceFinderWebAppS3URL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "spaceFinderWebAppS3URL"
+          }
+        ],
+        "/Space-finder/find-space-cf/CFDistribution": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspacecfCFDistribution1BA7D8DE"
+          }
+        ],
+        "/Space-finder/find-space-CF-URL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "findspaceCFURL"
           }
         ],
         "/Space-finder/CDKMetadata/Default": [

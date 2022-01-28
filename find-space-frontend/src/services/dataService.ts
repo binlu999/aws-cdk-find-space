@@ -1,30 +1,23 @@
+import { ICreateSpaceState } from './../components/space/createSpace';
 import { Space } from './../models/model';
+import {Config as AppConfig} from './config';
+import {S3,config} from 'aws-sdk';
+import {generateRandomId} from '../utils/utils';
 
+config.update({
+    region:AppConfig.REGION
+})
 export class DataService{
     public async getSpaces():Promise<Space[]>{
-        const result:Space[]=[];
-        result.push({
-            spaceId:"123",
-            name:"name 1",
-            location:"location 1",
-        });
-        result.push({
-            spaceId:"1232",
-            name:"name 2",
-            location:"location 2",
-            photoUrl:"https://cdn.cnn.com/cnnnext/dam/assets/210108101156-22-us-capitol-riots-0106-medium-plus-169.jpg"
-        });
-        result.push({
-            spaceId:"1233",
-            name:"name 3",
-            location:"location 3",
-        });
-        result.push({
-            spaceId:"1234",
-            name:"name 4",
-            location:"location 4",
-        });
-        return result;
+        const requestURL = AppConfig.api.spaceURL;
+        const requestResult= await fetch(
+            requestURL,{
+                method:'GET'
+            }
+        );
+        const responseJSON=await requestResult.json();
+        console.log(JSON.stringify(responseJSON));
+        return responseJSON;
     }
 
     public async reserveSpace(spaceId:string):Promise<string|undefined>{
@@ -32,6 +25,42 @@ export class DataService{
             return "555";
         }else{
             return undefined;
+        }
+    }
+
+    public async createSpace(createSpace:ICreateSpaceState) :Promise<string> {
+        if(createSpace.photo){
+            const photoURL = await this.uploadPublicFile(createSpace.photo,AppConfig.PHOTO_BUCKET);
+            createSpace.photoURL=photoURL;
+            createSpace.photo=undefined;
+        }
+        const requestURL=AppConfig.api.spaceURL;
+        const requestOptions:RequestInit = {
+            method:'POST',
+            body:JSON.stringify(createSpace)
+        };
+        const result=await fetch(requestURL,requestOptions);
+        console.log(result);
+        const resultJson=await result.json();
+        console.log(resultJson);
+        return JSON.stringify(resultJson.spaceid);
+    }
+
+    private async uploadPublicFile(file:File, bucket:string) {
+        const fileName=generateRandomId()+ file.name;
+        try {
+            const s3Client=new S3({
+                region:AppConfig.REGION
+            });
+            const uploadResult = await s3Client.upload({
+                Bucket:bucket,
+                Key:fileName,
+                Body:file,
+                ACL:'public-read'
+            }).promise();
+            return uploadResult.Location;
+        } catch (error) {
+            throw error;
         }
     }
 }

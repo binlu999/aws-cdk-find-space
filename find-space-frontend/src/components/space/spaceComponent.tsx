@@ -5,21 +5,21 @@ interface SpaceComponentProps {
     spaceId:string,
     name:string,
     location:string,
-    photoUrl?:string,
+    photoURL?:string,
     reserveSpace:(spaceId:string)=>void
 };
 
 export class SpaceComponent extends Component <SpaceComponentProps> {
 
     private renderImage(){
-        if (this.props.photoUrl) {
-            return <img src={this.props.photoUrl} alt={this.props.name} />
+        if (this.props.photoURL) {
+            return <img src={this.props.photoURL} alt={this.props.name} />
         } else {
             return <img src={defaultImage} alt={this.props.name} />
         }
     }
     render(): ReactNode {
-        return <div className="spaceComponent">
+        return <div className="spaceComponent" key={this.props.spaceId}>
             {this.renderImage()}
             <label className="name">{this.props.name}</label><br/>
             <label className="spaceId">{this.props.spaceId}</label><br/>
