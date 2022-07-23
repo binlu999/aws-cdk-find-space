@@ -1,4 +1,4 @@
-import { Fn, Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
+import { Fn, Stack, StackProps, CfnOutput, RemovalPolicy } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Code, Function as LambdaFunction, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { join } from 'path';
@@ -88,6 +88,7 @@ export class SpaceStack extends Stack {
     private initializePhotoBucket(){
         this.spacePhotoBucket = new Bucket(this, 'space-photo-bucket',{
             bucketName:'space-photos-'+this.bucketSuffix,
+            removalPolicy:RemovalPolicy.DESTROY,
             cors:[{
                 allowedMethods:[
                     HttpMethods.HEAD,

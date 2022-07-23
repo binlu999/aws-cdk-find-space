@@ -1,4 +1,4 @@
-import { Stack, CfnOutput } from 'aws-cdk-lib';
+import { Stack, CfnOutput, RemovalPolicy } from 'aws-cdk-lib';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
 import { CloudFrontWebDistribution } from 'aws-cdk-lib/aws-cloudfront';
@@ -20,6 +20,7 @@ export class FindSpaceWeb {
         this.webContentBucket = new Bucket(this.stack,'find-space-app-web-content',{
             bucketName:bucketName,
             publicReadAccess:false,
+            removalPolicy:RemovalPolicy.DESTROY,
             websiteIndexDocument:'index.html'
         });
         new BucketDeployment(

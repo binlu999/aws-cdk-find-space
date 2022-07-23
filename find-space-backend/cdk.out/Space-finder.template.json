@@ -1358,8 +1358,8 @@
           ]
         }
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "Space-finder/space-photo-bucket/Resource"
       }
@@ -1881,8 +1881,8 @@
           "IndexDocument": "index.html"
         }
       },
-      "UpdateReplacePolicy": "Retain",
-      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
       "Metadata": {
         "aws:cdk:path": "Space-finder/find-space-app-web-content/Resource"
       }
@@ -1920,7 +1920,7 @@
           }
         ],
         "SourceObjectKeys": [
-          "b5adf469ae8507abe19a68b912c59c00ba47ff48aa39a77725cc494a45c82dd1.zip"
+          "edda803618b29b45ab4a4b38792a5315b6bca3d14795cd47d42e81ff6f072523.zip"
         ],
         "DestinationBucketName": {
           "Ref": "findspaceappwebcontent82191DE7"
@@ -2149,7 +2149,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/22S227bMAyGn6X3irYsewHXRYsBOxQ9rJeBLLEpE1k0dFjgGn73UlbtBO2u+PEXRQk/+U1u5NcLdQwrbQ4ri40c7qPSB8HSdlAd7lSEo+rlcAchVh2K+tmdYaU1JRfFFXSW+hYYWT3LuNsOslaAr1LyGi5VOCXvPQv/gvhCJksz0c5hpMcA/pbIhiqx7PEV/PSBJRsFqpb/SbY0zPGWLOo+p4VGYVXbGCWHLIFvMQQklwuuk9Mx8wIs/lQ9+L/gp6J7dDsLkZbSUZjeqZYMu/agmvLuBPM7W0cG9kH+nsLSOWzY2xAgBlnlIMximLxM+gDx5ODI1XIo6uRawfxUoVHo4pAcZo/y4cIz1Bbfx/NZ+WEYMPbz5fM8G1lFXoqX9sP9G0+p4+ctJfPsiT8/1JmvMz9Bc4UhemzS7OZ5Po5Z+ZNil+JpESY38qaw1bOFNs9gy/uoLcrqGPjX01hEnUKk9r9LxFyTM1imlIcg9+HLv/V3ud7I9cU+IK487y22IO9KfAMxnAI0CgMAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/22S227bMAyGn6X3irYswO5dFy0G7FD0sF4GssSmTGTR0GGBa/jdS1m1E7S74sdfFCX85De5kV8v1DGstDmsLDZyuI9KHwRL20F1uFMRjqqXwx2EWHUo6md3hpXWlFwUV9BZ6ltgZPUs4247yFoBvkrJa7hU4ZS89yz8C+ILmSzNRDuHkR4D+FsiG6rEssdX8NMHlmwUqFr+J9nSMMdbsqj7nBYahVVtY5QcsgS+xRCQXC64Tk7HzAuw+FP14P+Cn4ru0e0sRFpKR2F6p1oy7NqDasq7E8zvbB0Z2Af5ewpL57Bhb0OAGGSVgzCLYfIy6QPEk4MjV8uhqJNrBfNThUahi0NymD3KhwvPUFt8H89n5YdhwNjPl8/zbGQVeSle2g/3bzyljp+3lMyzJ/78UGe+zvwEzRWG6LFJs5vn+Thm5U+KXYqnRZjcyJvCVs8W2jyDLe+jtiirY+BfT2MRdQqR2v8uEXNNzmCZUh6C3Icv/9bf5Xoj1xf7gLjyvLfYgrwr8Q2zqhrpCgMAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "Space-finder/CDKMetadata/Default"
