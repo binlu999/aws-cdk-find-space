@@ -1,4 +1,4 @@
-import { Stack } from "aws-cdk-lib";
+import { RemovalPolicy, Stack } from "aws-cdk-lib";
 import { AttributeType, Table } from "aws-cdk-lib/aws-dynamodb";
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
@@ -50,7 +50,8 @@ export class GenericTable {
                     name:this.props.primaryKey,
                     type:AttributeType.STRING
                 },
-                tableName:this.props.tableName
+                tableName:this.props.tableName,
+                removalPolicy:RemovalPolicy.DESTROY
             });
     }
 
